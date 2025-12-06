@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>森森天氣</title>
+    <title>專業氣象預報</title>
     <link rel="icon" type="image/png" href="./icon-v2.png">
     <link rel="apple-touch-icon" href="./icon-v2.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./icon-v2.png">
@@ -15,14 +15,14 @@
 
     <style>
         :root {
-            --ac-green: #7DE1A9;
-            --ac-bg-pattern: #8FD8AF;
-            --ac-cream: #FFFEF2;
-            --ac-yellow: #F9F195;
-            --ac-brown: #796452;
-            --ac-blue: #4FB5D9;
-            --ac-dark: #58504A;
-            --ac-card-border: #E6E0C8;
+            --ac-green: #FFD4DB;
+            --ac-bg-pattern: #FFCAD5;
+            --ac-cream: #FFFFFF;
+            --ac-yellow: #B0C4DE;
+            --ac-brown: #3C4245;
+            --ac-blue: #A3D4EB;
+            --ac-dark: #3C4245;
+            --ac-card-border: #E6E6FA;
         }
 
         * {
@@ -35,9 +35,10 @@
         body {
             font-family: 'Zen Maru Gothic', sans-serif;
             background-color: var(--ac-green);
-            /* 更細緻的斜紋背景 */
+            /* 替換為點點背景 */
             background-image:
-                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.2) 20px, rgba(255, 255, 255, 0.2) 40px);
+                radial-gradient(circle, rgba(255, 255, 255, 0.4) 3px, transparent 0);
+                background-size: 25px 25px; /* 控制點點間距 */
             min-height: 100vh;
             color: var(--ac-dark);
             /* 防止 iOS 左右滑動 */
@@ -51,7 +52,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
@@ -72,8 +73,8 @@
 
         .update-pill {
             font-size: 0.8rem;
-            color: white;
-            background: rgba(0, 0, 0, 0.2);
+            color: var(--ac-dark);
+            background: rgba(255, 255, 255, 0.8);
             padding: 4px 10px;
             border-radius: 12px;
         }
@@ -159,14 +160,14 @@
             gap: 15px;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 2px dashed #E0D8C0;
+            border-top: 2px dashed var(--ac-card-border);
         }
 
         .advice-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.7);
             padding: 10px;
             border-radius: 20px;
         }
@@ -187,11 +188,11 @@
         /* === 稍後預報：橫向滑動區 === */
         .section-title {
             font-size: 1.2rem;
-            color: white;
+            color: var(--ac-dark);
             margin-bottom: 15px;
             margin-left: 10px;
             font-weight: 900;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .scroll-container {
@@ -210,18 +211,18 @@
 
         .mini-card {
             min-width: 140px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 25px;
             padding: 20px 15px;
             text-align: center;
-            border: 3px solid white;
+            border: 3px solid var(--ac-card-border);
             flex-shrink: 0;
             /* 防止被擠壓 */
         }
 
         .mini-time {
             background: var(--ac-green);
-            color: white;
+            color: var(--ac-dark);
             padding: 3px 10px;
             border-radius: 10px;
             font-size: 0.8rem;
@@ -294,7 +295,7 @@
 
         function getAdvice(rainProb, maxTemp) {
             let rainIcon = "🌂";
-            let rainText = "不用帶傘";
+            let rainText = "開心出門玩吧";
             if (parseInt(rainProb) > 30) {
                 rainIcon = "☂️";
                 rainText = "記得帶傘！";
